@@ -1,11 +1,63 @@
 const express = require('express');
+const { check, validationResult } = require('express-validator');
+const User = require('../../models/Users');
+const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs')
 
 //helps create router habdlers
 const router = express.Router();
 
-//@route GET api/users
-//@desc Test route
+//@route POST api/users
+//@desc Register users
 //@access public
-router.get('/', (req, res) => res.send('Users route'));
+router.post('/', [
+    //validations
+    check('name', 'Name is required').not().isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Please enter a password with 6 or more character').isLength({ min:6 })
+],
+
+    async (req, res) => {
+        const errors = validationResult(req);
+        //send errors as a list of array
+        if(!errors.isEmpty()){
+            return res.status(400).json({ errors: errors.array() });
+        }
+        const { name, email, password } = req.body;
+        try {
+        //See if user exist
+            let user = await User.findOne({ email });
+            if(user){
+                return res.status(400).json({errors: [{ msg: 'User already exists' }]})
+            }
+        //Get user gravatar from email
+            const avatar = gravatar.url(email, {
+                s: '200',
+                r: 'pg',
+                d: 'mm'
+            })
+
+        //creating new user instance
+            user = new User({
+                name,
+                email,
+                password,
+                avatar
+            });
+        //Encrypt password with bcrypt
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+
+        // save user
+        await user.save();
+
+        //Return JWT
+        res.send('User registered');
+        } catch (error) {
+        console.log(error.message);
+        res.status(500).send('Server error')
+        }
+
+    });
 
 module.exports = router;
