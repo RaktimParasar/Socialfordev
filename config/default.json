@@ -1,4 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://socialADMIN:socialADMIN@mern-social.urjxe.mongodb.net/socialnet?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
-}
