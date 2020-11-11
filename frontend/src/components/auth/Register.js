@@ -1,4 +1,14 @@
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+/* 
+    T O D O
+
+    1. UI changes
+    2. showPasswordToggle
+
+ */
+
 
 const Register = () => {
     
@@ -24,7 +34,7 @@ const Register = () => {
         if(password !== password2){
             console.log('Password do not match')
         } else{
-        console.log(formData)
+            console.log("Success")
         }
     };
 
@@ -80,7 +90,7 @@ const Register = () => {
                     <input type="submit" className="btn btn-primary" value="Register" />
                 </form>
                 <p className="my-1">
-                    Already have an account? <a href="login.html">Sign In</a>
+                    Already have an account? <Link to='/login'>Sign In</Link>
                 </p>
             </section>
         </Fragment>
@@ -88,13 +98,3 @@ const Register = () => {
 }
 
 export default Register;
-
-/* 
-    T O D O
-
-    1. UI changes
-    2. showPasswordToggle
-
- */
-
-
