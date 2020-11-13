@@ -1,15 +1,20 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login } from '../../actions/auth';
+import Alert from '../layout/Alert';
+import PropTypes from 'prop-types';
 
 /* 
     T O D O
 
     1. UI changes
     2. showPasswordToggle
+    3. Alert system
 
  */
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
         email: '',
@@ -28,12 +33,19 @@ const Login = () => {
 
     const onSubmitHandle = (e) => {
         e.preventDefault();
-            console.log("Success")
+        login(email, password);
     };
+
+    //Redirect if logged in
+    if(isAuthenticated){
+        return <Redirect to='/dashboard' />
+    };
+
     return (
         <div>
             <Fragment>
             <section className="container">
+                <Alert />
                 <h1 className="large text-primary">Sign In</h1>
                 <p className="lead"><i className="fas fa-user"></i> Sign Into  Your Account</p>
                 <form className="form" onSubmit={e => onSubmitHandle(e)}>
@@ -65,7 +77,18 @@ const Login = () => {
             </section>
             </Fragment>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {
+    login
+})(Login);
