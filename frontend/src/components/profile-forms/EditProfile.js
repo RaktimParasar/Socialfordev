@@ -1,25 +1,33 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { Link, withRouter } from 'react-router-dom';
 import Alert from '../layout/Alert';
 
-const CreateProfile = ({ createProfile, history }) => {
-    const [formData, setFromData] = useState({
-        company: '',
-        website: '',
-        location: '',
-        status: '',
-        skills: '',
-        githubusername: '',
-        bio: '',
-        twitter: '',
-        facebook: '',
-        linkedin: '',
-        youtube: '',
-        instagram: '',
-    });
+
+/* REFACTOR CODE ASAP */
+const initialState = {
+    company: '',
+    website: '',
+    location: '',
+    status: '',
+    skills: '',
+    githubusername: '',
+    bio: '',
+    twitter: '',
+    facebook: '',
+    linkedin: '',
+    youtube: '',
+    instagram: '',
+}
+
+const EditProfile = ({ 
+    profile: {profile, loading}, 
+    createProfile, 
+    getCurrentProfile,
+    history }) => {
+    const [formData, setFromData] = useState(initialState);
 
     const {
         company,
@@ -38,6 +46,25 @@ const CreateProfile = ({ createProfile, history }) => {
 
     const [socialToggle, setSocialToggle] = useState(false);
 
+    useEffect(() => {
+        getCurrentProfile();
+        
+        setFromData({
+            company: loading || !profile.company ? '' : profile.company,
+            website: loading || !profile.website ? '' : profile.website ,
+            location: loading || !profile.location ? '' : profile.location ,
+            status: loading || !profile.status ? '' : profile.status ,
+            skills: loading || !profile.skills ? '' : profile.skills.join(',') ,
+            githubusername: loading || !profile.githubusername ? '' : profile.githubusername ,
+            bio: loading || !profile.bio ? '' : profile.bio ,
+            twitter: loading || !profile.social ? '' : profile.social.twitter ,
+            facebook: loading || !profile.social ? '' : profile.social.facebook ,
+            linkedin: loading || !profile.social ? '' : profile.social.linkedin ,
+            youtube: loading || !profile.social ? '' : profile.social.youtube ,
+            instagram: loading || !profile.social ? '' : profile.social.instagram ,
+        })
+    }, [getCurrentProfile, loading])
+
     const onChangeHandle = e => {
         const { name, value } = e.target;
 
@@ -49,7 +76,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
     const onSubmitHandle = e =>{
         e.preventDefault();
-        createProfile(formData, history);
+        createProfile(formData, history, true);
     };
 
     return (
@@ -171,10 +198,17 @@ const CreateProfile = ({ createProfile, history }) => {
     )
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
     createProfile: PropTypes.func.isRequired,
-}
+    getCurrentProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
+};
 
-export default connect(null, {
+const mapStateToProps = state => ({
+    profile: state.profile
+});
+
+export default connect(mapStateToProps, {
     createProfile,
-})(withRouter(CreateProfile))
+    getCurrentProfile,
+})(withRouter(EditProfile))
