@@ -6,7 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Alert from '../layout/Alert';
 
 const CreateProfile = ({ createProfile, history }) => {
-    const [formData, setFromData] = useState({
+    const [formData, setFormData] = useState({
         company: '',
         website: '',
         location: '',
@@ -41,7 +41,7 @@ const CreateProfile = ({ createProfile, history }) => {
     const onChangeHandle = e => {
         const { name, value } = e.target;
 
-        setFromData({
+        setFormData({
             ...formData,
             [name]: value
         })

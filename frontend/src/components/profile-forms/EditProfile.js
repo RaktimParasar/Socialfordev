@@ -27,7 +27,7 @@ const EditProfile = ({
     createProfile, 
     getCurrentProfile,
     history }) => {
-    const [formData, setFromData] = useState(initialState);
+    const [formData, setFormData] = useState(initialState);
 
     const {
         company,
@@ -68,7 +68,7 @@ const EditProfile = ({
     const onChangeHandle = e => {
         const { name, value } = e.target;
 
-        setFromData({
+        setFormData({
             ...formData,
             [name]: value
         })
