@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteEducation } from '../../actions/profile';
 
@@ -45,4 +46,4 @@ Education.propTypes = {
     deleteEducation: PropTypes.func.isRequired,
 }
 
-export default connect(null, { deleteEducation })(Education)
+export default connect(null, { deleteEducation })(withRouter(Education))
