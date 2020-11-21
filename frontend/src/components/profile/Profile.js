@@ -8,6 +8,7 @@ import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
+import ProfileGithub from './ProfileGithub';
 
 
 const Profile = ({ match, getProfileById, auth, profile: { profile } }) => {
@@ -66,6 +67,11 @@ const Profile = ({ match, getProfileById, auth, profile: { profile } }) => {
                                 )
                             }
                         </div> 
+                        {
+                            profile.githubusername && (
+                                <ProfileGithub username={profile.githubusername} />
+                            )
+                        }
                     </div>
                 </Fragment>
             }
