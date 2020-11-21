@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 const config = require('config');
 const axios = require('axios');
 
-//helps create router habdlers
+//helps create router handlers
 const router = express.Router();
 
 //@route GET api/profile
@@ -43,24 +43,24 @@ router.post('/', [auth, [
 
         //Build profile object
         const profileFields = {}
-        profileFields.user = req.user.id;
-        if(company) profileFields.company = company;
-        if(website) profileFields.website = website;
-        if(location) profileFields.location = location;
-        if(bio) profileFields.bio = bio;
-        if(status) profileFields.status = status;
-        if(githubusername) profileFields.githubusername = githubusername;
+        profileFields.user = req.user.id
+        if(company) profileFields.company = company
+        if(website) profileFields.website = website
+        if(location) profileFields.location = location
+        if(bio) profileFields.bio = bio
+        if(status) profileFields.status = status
+        if(githubusername) profileFields.githubusername = githubusername
         if(skills) {
-            profileFields.skills = skills.split(',').map(skill => skill.trim());
+            profileFields.skills = skills.split(',').map(skill => skill.trim())
         }
 
         //Build social object
         profileFields.social = {}
-        if(youtube) profileFields.social.youtube = youtube;
-        if(facebook) profileFields.social.facebook = facebook;
-        if(instagram) profileFields.social.instagram = instagram;
-        if(twitter) profileFields.social.twitter = twitter;
-        if(linkedin) profileFields.social.linkedin = linkedin;
+        if(youtube) profileFields.social.youtube = youtube
+        if(facebook) profileFields.social.facebook = facebook
+        if(instagram) profileFields.social.instagram = instagram
+        if(twitter) profileFields.social.twitter = twitter
+        if(linkedin) profileFields.social.linkedin = linkedin
 
         try {
             let profile = await Profile.findOne({ user: req.user.id });

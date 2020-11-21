@@ -26,6 +26,12 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading }}) => {
                     <span className="hide-sm">Logout</span>
                 </a>
             </li>
+            <li>
+                <a href="www.google.com">
+                    <i className="fas fa-sign-out-alt"></i>{' '}
+                    <span className="hide-sm">Logout</span>
+                </a>
+            </li>
         </ul>
     );
 
