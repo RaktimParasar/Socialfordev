@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
+import Alert from '../layout/Alert';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
 
@@ -13,6 +14,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 
     return (
         <section className="container">
+            <Alert />
             {
                 loading ? (
                 <Spinner />
