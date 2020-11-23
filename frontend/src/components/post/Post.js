@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { getPost } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from '../posts/PostItem';
+import CommentForm from './CommentForm';
+import Alert from '../layout/Alert';
 
 const Post = ({ getPost, match, post: {post, loading } }) => {
     
@@ -15,10 +17,12 @@ const Post = ({ getPost, match, post: {post, loading } }) => {
     return (
         <Fragment>
             <section className="container">
+                <Alert />
                 {
                     loading || post === null ? <Spinner /> : <Fragment>
                         <Link to='/posts' className="btn">Back To Posts</Link>
-                        <PostItem post={post} showActions={false}/>
+                        <PostItem post={post} showActions={false} />
+                        <CommentForm postId={post._id} />
                     </Fragment>
                 }
             </section>
