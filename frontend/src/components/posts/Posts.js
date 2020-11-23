@@ -5,6 +5,7 @@ import { getPosts } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import Alert from '../layout/Alert';
+import PostForm from './PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
 
@@ -24,7 +25,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
                         <p className="lead">
                             <i className="fas fa-user"></i> Welcome to the community
                         </p>
-                        { /* PostForm */ }
+                        <PostForm />
                         <div className="posts">
                             {
                                 posts.map(post => (
