@@ -7,6 +7,7 @@ import Spinner from '../layout/Spinner';
 import PostItem from '../posts/PostItem';
 import CommentForm from './CommentForm';
 import Alert from '../layout/Alert';
+import CommentItem from './CommentItem';
 
 const Post = ({ getPost, match, post: {post, loading } }) => {
     
@@ -23,6 +24,17 @@ const Post = ({ getPost, match, post: {post, loading } }) => {
                         <Link to='/posts' className="btn">Back To Posts</Link>
                         <PostItem post={post} showActions={false} />
                         <CommentForm postId={post._id} />
+                        <div className="comments">
+                            {
+                                post.comments.map(comment => (
+                                    <CommentItem 
+                                    key={comment._id} 
+                                    comment={comment} 
+                                    postId={post._id}
+                                    />
+                                ))
+                            }
+                        </div>
                     </Fragment>
                 }
             </section>
