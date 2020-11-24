@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../actions/profile';
-import Alert from '../layout/Alert';
 
 const AddEducation = ({ addEducation, history }) => {
     const [formData, setFormData] = useState({
@@ -34,8 +33,6 @@ const AddEducation = ({ addEducation, history }) => {
 
     return (
         <Fragment>
-        <section className="container">
-        <Alert />
         <h1 className="large text-primary">Add Your Education</h1>
         <p className="lead">
             <i className="fas fa-code-branch" /> Add any school or bootcamp
@@ -118,7 +115,6 @@ const AddEducation = ({ addEducation, history }) => {
             Go Back
             </Link>
         </form>
-    </section>
         </Fragment>
     )
 }

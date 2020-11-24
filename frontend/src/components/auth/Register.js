@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
-import Alert from '../layout/Alert';
 
 
 /* 
@@ -50,8 +49,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
     return (
         <Fragment>
-            <section className="container">
-                <Alert />
                 <h1 className="large text-primary">Sign Up</h1>
                 <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
                 <form className="form" onSubmit={e => onSubmitHandle(e)}>
@@ -104,7 +101,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 <p className="my-1">
                     Already have an account? <Link to='/login'>Sign In</Link>
                 </p>
-            </section>
         </Fragment>
     );
 };

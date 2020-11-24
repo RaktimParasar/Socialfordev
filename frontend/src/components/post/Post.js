@@ -6,7 +6,6 @@ import { getPost } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from '../posts/PostItem';
 import CommentForm from './CommentForm';
-import Alert from '../layout/Alert';
 import CommentItem from './CommentItem';
 
 const Post = ({ getPost, match, post: {post, loading } }) => {
@@ -17,8 +16,6 @@ const Post = ({ getPost, match, post: {post, loading } }) => {
 
     return (
         <Fragment>
-            <section className="container">
-                <Alert />
                 {
                     loading || post === null ? <Spinner /> : <Fragment>
                         <Link to='/posts' className="btn">Back To Posts</Link>
@@ -37,7 +34,6 @@ const Post = ({ getPost, match, post: {post, loading } }) => {
                         </div>
                     </Fragment>
                 }
-            </section>
         </Fragment>
     )
 }

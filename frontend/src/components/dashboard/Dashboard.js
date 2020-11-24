@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner  from '../layout/Spinner';
-import Alert from '../layout/Alert';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
@@ -20,13 +19,12 @@ const Dashboard = ({ getCurrentProfile,
     }, [getCurrentProfile]);
     
     return (
-        <section className="container">
+            <Fragment>
             {
                 loading && profile === null ? (
                 <Spinner />
                 ) : (
                 <Fragment>
-                    <Alert />
                     <h1 className="large text-primary">Dashboard</h1>
                     <p className="lead">
                         <i className="fas fa-user" /> Welcome {user && user.name}
@@ -57,7 +55,7 @@ const Dashboard = ({ getCurrentProfile,
                 </Fragment>
                 )
             }
-        </section>
+        </Fragment>
     );
 };
 

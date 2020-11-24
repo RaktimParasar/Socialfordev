@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
-import Alert from '../layout/Alert';
 import PostForm from './PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
@@ -14,8 +13,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     }, [getPosts]);
 
     return (
-        <section className="container">
-            <Alert />
+        <Fragment>
             {
                 loading ? (
                 <Spinner />
@@ -36,7 +34,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
                     </Fragment>
                 )
             }
-        </section>
+        </Fragment>
     )
 }
 

@@ -13,7 +13,6 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
 
     return (
         <Fragment>
-            <section className="container">
             {
                 loading ? <Spinner /> : <Fragment>
                     <h1 className="large text-primary">Developers</h1>
@@ -32,7 +31,6 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
                     </div>
                 </Fragment>
             }
-            </section>
         </Fragment>
     )
 }
