@@ -23,6 +23,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         password2: '',
     });
 
+    const [showPasswordToggle,  setShowPasswordToggle] = useState(false);
+
     const { name, email, password, password2 } = formData;
 
     const onChangeHandle = (e) => {
@@ -42,6 +44,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         }
     };
 
+    const passwordToggle = () => {
+        setShowPasswordToggle(!showPasswordToggle)
+    };
+
     //Redirect if logged in
     if(isAuthenticated){
         return <Redirect to='/dashboard' />
@@ -59,7 +65,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     name="name" 
                     value={name}
                     onChange={e => onChangeHandle(e)}
-                    // required 
+                    required 
                     />
                     </div>
                     <div className="form-group">
@@ -69,7 +75,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     name="email"
                     value={email}
                     onChange={e => onChangeHandle(e)}
-                    // required
+                    required
                     />
                     <small className="form-text"
                         >This site uses Gravatar so if you want a profile image, use a
@@ -78,13 +84,16 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     </div>
                     <div className="form-group">
                     <input
-                        type="password"
+                        type={showPasswordToggle ? 'text' : 'password'}
                         placeholder="Password"
                         name="password"
                         value={password}
                         onChange={e => onChangeHandle(e)}
-                        // minLength="6"
+                        minLength="6"
                     />
+                    <i 
+                    onClick={passwordToggle} 
+                    className={`fa ${showPasswordToggle ? 'fa-eye-slash' : 'fa-eye'} password-icon`}></i>
                     </div>
                     <div className="form-group">
                     <input
@@ -93,7 +102,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         name="password2"
                         value={password2}
                         onChange={e => onChangeHandle(e)}
-                        // minLength="6"
+                        minLength="6"
                     />
                     </div>
                     <input type="submit" className="btn btn-primary" value="Register" />

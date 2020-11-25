@@ -488,12 +488,36 @@ button {
   margin-bottom: 0.5rem;
 }
 
+/* password toggle icon */
+.password-icon {
+  position: absolute;
+  left: auto;
+  right: 250px;
+  text-indent: 32px;
+  top: 380px;
+  
+}
+.password-icon-login {
+  position: absolute;
+  left: auto;
+  right: 250px;
+  text-indent: 32px;
+  top: 300px;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
     margin-top: 8rem;
   }
-
+  .password-icon {
+    top: 400px;
+    right: 50px;
+  }
+  .password-icon-login {
+    top: 296px;
+    right: 50px;
+  }
   .hide-sm {
     display: none;
   }
@@ -575,3 +599,4 @@ button {
     padding: 0.3rem 0.4rem;
   }
 }
+

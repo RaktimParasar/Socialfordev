@@ -20,6 +20,8 @@ const Login = ({ login, isAuthenticated }) => {
         password: '',
     });
 
+    const [showPasswordToggle,  setShowPasswordToggle] = useState(false);
+
     const { email, password } = formData;
 
     const onChangeHandle = (e) => {
@@ -33,6 +35,10 @@ const Login = ({ login, isAuthenticated }) => {
     const onSubmitHandle = (e) => {
         e.preventDefault();
         login(email, password);
+    };
+
+    const passwordToggle = () => {
+        setShowPasswordToggle(!showPasswordToggle)
     };
 
     //Redirect if logged in
@@ -58,13 +64,16 @@ const Login = ({ login, isAuthenticated }) => {
                     </div>
                     <div className="form-group">
                     <input
-                        type="password"
+                        type={showPasswordToggle ? 'text' : 'password'}
                         placeholder="Password"
                         name="password"
                         value={password}
                         onChange={e => onChangeHandle(e)}
                         minLength="6"
                     />
+                    <i 
+                    onClick={passwordToggle} 
+                    className={`fa ${showPasswordToggle ? 'fa-eye-slash' : 'fa-eye'} password-icon-login`}></i>
                     </div>
                     <input type="submit" className="btn btn-primary" value="Login" />
                 </form>
