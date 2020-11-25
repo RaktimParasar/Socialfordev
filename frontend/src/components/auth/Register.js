@@ -5,16 +5,6 @@ import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-
-/* 
-    T O D O
-
-    1. UI changes
-    2. showPasswordToggle
-
- */
-
-
 const Register = ({ setAlert, register, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         name: '',

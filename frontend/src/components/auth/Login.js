@@ -4,15 +4,6 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-/* 
-    T O D O
-
-    1. UI changes
-    2. showPasswordToggle
-    3. Alert system
-
- */
-
 const Login = ({ login, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({

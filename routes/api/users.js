@@ -4,7 +4,8 @@ const User = require('../../models/Users');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('config')
+const config = require('config');
+const normalize = require('normalize-url');
 
 //helps create router habdlers
 const router = express.Router();
@@ -33,11 +34,11 @@ router.post('/', [
                 return res.status(400).json({errors: [{ msg: 'User already exists' }]})
             }
         //Get user gravatar from email
-            const avatar = gravatar.url(email, {
+            const avatar = normailze(gravatar.url(email, {
                 s: '200',
                 r: 'pg',
                 d: 'mm'
-            })
+            }), { forceHttps: true });
 
         //creating new user instance
             user = new User({
