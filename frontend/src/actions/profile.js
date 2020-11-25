@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import { setAlert } from './alert';
 import { 
     CLEAR_PROFILE, 
@@ -12,7 +12,7 @@ import {
 //Get current users profile
 export const getCurrentProfile = () => async dispatch => {
     try {
-        const res = await axios.get('/api/profile/me');
+        const res = await api.get('/profile/me');
 
         dispatch({
             type: GET_PROFILE,
@@ -30,7 +30,7 @@ export const getCurrentProfile = () => async dispatch => {
 export const getProfiles = () => async dispatch => {
     dispatch({ type: CLEAR_PROFILE })
     try {
-        const res = await axios.get('/api/profile');
+        const res = await api.get('/profile');
 
         dispatch({
             type: GET_PROFILES,
@@ -47,7 +47,7 @@ export const getProfiles = () => async dispatch => {
 //Get profile by ID
 export const getProfileById = userId => async dispatch => {
     try {
-        const res = await axios.get(`/api/profile/user/${userId}`);
+        const res = await api.get(`/profile/user/${userId}`);
 
         dispatch({
             type: GET_PROFILE,
@@ -64,7 +64,7 @@ export const getProfileById = userId => async dispatch => {
 //Get Github Repos
 export const getGitRepos = username => async dispatch => {
     try {
-        const res = await axios.get(`/api/profile/github/${username}`);
+        const res = await api.get(`/profile/github/${username}`);
 
         dispatch({
             type: GET_REPOS,
@@ -80,14 +80,9 @@ export const getGitRepos = username => async dispatch => {
 
 //Create or update profile
 export const createProfile = (formData, history, edit = false) => async dispatch => {
-    try {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
 
-        const res = await axios.post('/api/profile', formData, config);
+    try {
+        const res = await api.post('/profile', formData);
 
         dispatch({
             type: GET_PROFILE,
@@ -115,14 +110,9 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 
 //Add Experience
 export const addExperience = (formData, history) => async dispatch => {
+    
     try {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-
-        const res = await axios.put('/api/profile/experience', formData, config);
+        const res = await api.put('/profile/experience', formData);
 
         dispatch({
             type: UPDATE_PROFILE,
@@ -150,13 +140,7 @@ export const addExperience = (formData, history) => async dispatch => {
 //Add Education
 export const addEducation = (formData, history) => async dispatch => {
     try {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-
-        const res = await axios.put('/api/profile/education', formData, config);
+        const res = await api.put('/profile/education', formData);
 
         dispatch({
             type: UPDATE_PROFILE,
@@ -182,9 +166,9 @@ export const addEducation = (formData, history) => async dispatch => {
 }
 
 //Delete Experience
-export const deleteExperience = (id) => async dispatch => {
+export const deleteExperience = id => async dispatch => {
     try {
-        const res = await axios.delete(`/api/profile/experience/${id}`);
+        const res = await api.delete(`profile/experience/${id}`);
         dispatch({
             type: UPDATE_PROFILE,
             payload: res.data
@@ -199,9 +183,9 @@ export const deleteExperience = (id) => async dispatch => {
 };
 
 //Delete Education
-export const deleteEducation = (id) => async dispatch => {
+export const deleteEducation = id => async dispatch => {
     try {
-        const res = await axios.delete(`/api/profile/education/${id}`);
+        const res = await api.delete(`/profile/education/${id}`);
         dispatch({
             type: UPDATE_PROFILE,
             payload: res.data
@@ -219,7 +203,7 @@ export const deleteEducation = (id) => async dispatch => {
 export const deleteAccount = () => async dispatch => {
     if(window.confirm('Are you sure? This can NOT be undone')) {
         try {
-            await axios.delete('/api/profile')
+            await api.delete('/profile')
             dispatch({
                 type: CLEAR_PROFILE
             });
