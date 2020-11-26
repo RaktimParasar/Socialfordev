@@ -53,7 +53,7 @@ const Login = ({ login, isAuthenticated }) => {
                     required
                     />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" style={{ 'position': 'relative'}}>
                     <input
                         type={showPasswordToggle ? 'text' : 'password'}
                         placeholder="Password"
@@ -62,9 +62,13 @@ const Login = ({ login, isAuthenticated }) => {
                         onChange={e => onChangeHandle(e)}
                         minLength="6"
                     />
-                    <i 
-                    onClick={passwordToggle} 
-                    className={`fa ${showPasswordToggle ? 'fa-eye-slash' : 'fa-eye'} password-icon-login`}></i>
+                    <span className="login-eyetoggle">
+                        <i 
+                        onClick={passwordToggle} 
+                        className={`fa ${showPasswordToggle ? 'fa-eye-slash' : 'fa-eye'}`}
+                        >
+                        </i>
+                    </span>
                     </div>
                     <input type="submit" className="btn btn-primary" value="Login" />
                 </form>

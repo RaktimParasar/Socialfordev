@@ -497,12 +497,12 @@ button {
   top: 380px;
   
 }
-.password-icon-login {
+
+.login-eyetoggle {
   position: absolute;
-  left: auto;
-  right: 250px;
-  text-indent: 32px;
-  top: 300px;
+  top: 0;
+  top: 5px;
+  right: 5px;
 }
 
 /* Mobile Styles */

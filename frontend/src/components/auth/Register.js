@@ -50,29 +50,29 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 <form className="form" onSubmit={e => onSubmitHandle(e)}>
                     <div className="form-group">
                     <input 
-                    type="text" 
-                    placeholder="Name" 
-                    name="name" 
-                    value={name}
-                    onChange={e => onChangeHandle(e)}
-                    required 
+                        type="text" 
+                        placeholder="Name" 
+                        name="name" 
+                        value={name}
+                        onChange={e => onChangeHandle(e)}
+                        required 
                     />
                     </div>
                     <div className="form-group">
                     <input 
-                    type="email" 
-                    placeholder="Email Address" 
-                    name="email"
-                    value={email}
-                    onChange={e => onChangeHandle(e)}
-                    required
+                        type="email" 
+                        placeholder="Email Address" 
+                        name="email"
+                        value={email}
+                        onChange={e => onChangeHandle(e)}
+                        required
                     />
                     <small className="form-text"
                         >This site uses Gravatar so if you want a profile image, use a
                         Gravatar email</small
                     >
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" style={{ 'position': "relative" }}>
                     <input
                         type={showPasswordToggle ? 'text' : 'password'}
                         placeholder="Password"
@@ -81,9 +81,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         onChange={e => onChangeHandle(e)}
                         minLength="6"
                     />
+                    <span className="login-eyetoggle">
                     <i 
                     onClick={passwordToggle} 
-                    className={`fa ${showPasswordToggle ? 'fa-eye-slash' : 'fa-eye'} password-icon`}></i>
+                    className={`fa ${showPasswordToggle ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                    </span>
                     </div>
                     <div className="form-group">
                     <input
